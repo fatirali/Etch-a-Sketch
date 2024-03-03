@@ -8,7 +8,7 @@ for (let i = 0; i < 16; i++) {
   };
   var colOfContainers = document.querySelectorAll(".main-grid");
 
-
+// create 16 divs for each of the containers
   colOfContainers.forEach(function (container) {
     for (let i = 0; i < 16; i++) {
         var div = document.createElement("div");
@@ -18,6 +18,13 @@ for (let i = 0; i < 16; i++) {
       };
 })
 
+// get divs to change color after hovering
+var mouseTargets = document.querySelectorAll("div");
+mouseTargets.forEach(function(target) {
+    target.addEventListener("mouseover", () => {
+        target.setAttribute("style", "background-color:lightBlue;")
+  });
+})
 
 // Create a column of 16 div box elements
 
