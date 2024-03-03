@@ -26,7 +26,7 @@ mouseTargets.forEach(function (target) {
 });
 
 // Add a button to reconfigure Grid
-var recon = document.createElement("button");
+ var recon = document.createElement("button");
 recon.textContent = "Reconfigure Grid";
 document.getElementById("body").appendChild(recon);
 
@@ -35,44 +35,50 @@ document.getElementById("body").appendChild(recon);
 // Change values of above container and box creators, i & j to input value
 // width and height of the body container should remain the same.. Use
 //               document.getElementById('div').setAttribute("style","width:500px");
-
+// Add in hover feature for all 
 
 var reconBtn = document.querySelector("button");
 reconBtn.addEventListener("click", function () {
-
-  var gridSize = Number(prompt("How many number of grid square would you like per side(maximum 100)"));
-  console.log(typeof gridSize)
+  var gridSize = Number(
+    prompt(
+      "How many number of grid square would you like per side(maximum 100)"
+    )
+  );
+  console.log(typeof gridSize);
   if (gridSize <= 100) {
     mouseTargets.forEach(function (target) {
-        target.remove();
+      target.remove();
     });
     var colOfContainers = document.querySelectorAll(".main-grid");
     colOfContainers.forEach(function (container) {
-        container.remove();
-    })
+      container.remove();
+    });
     for (let i = 0; i < gridSize; i++) {
-        var cont = document.createElement("div");
-        cont.id = "container";
-        cont.classList = "main-grid";
-        document.getElementById("body").appendChild(cont);
-      };
+      var cont = document.createElement("div");
+      cont.id = "container";
+      cont.classList = "main-grid";
+      document.getElementById("body").appendChild(cont);
+    }
 
-      var colOfContainers = document.querySelectorAll(".main-grid");
-      colOfContainers.forEach(function (container) {
-    for (let i = 0; i < gridSize; i++) {
+    var colOfContainers = document.querySelectorAll(".main-grid");
+    colOfContainers.forEach(function (container) {
+      for (let i = 0; i < gridSize; i++) {
         var div = document.createElement("div");
         div.id = "main";
         div.classList = "square-div";
         container.appendChild(div);
-    }
-  });
-};
+      }
+      var mouseTargets = document.querySelectorAll("div");
+      mouseTargets.forEach(function (target) {
+        target.addEventListener("mouseover", () => {
+          target.setAttribute("style", "background-color:lightBlue;");
+        });
+      });
+    });
+  }
 });
 
-
-
-
-// ------- REDUNDENT-----
+// ------- REDUNDENT----------------------------------------------------------------------------
 
 // for each div-box element, create 15 more box in front of the row
 
