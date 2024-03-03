@@ -1,37 +1,74 @@
-// creating a div element using javascript. 
+// creating a div element using javascript.
 // Copy this column container 16 times
 for (let i = 0; i < 16; i++) {
-    var cont = document.createElement("div");
-    cont.id = "container"
-    cont.classList = "main-grid";
-    document.getElementById("body").appendChild(cont);
-  };
-  var colOfContainers = document.querySelectorAll(".main-grid");
-
+  var cont = document.createElement("div");
+  cont.id = "container";
+  cont.classList = "main-grid";
+  document.getElementById("body").appendChild(cont);
+}
+var colOfContainers = document.querySelectorAll(".main-grid");
 // create 16 divs for each of the containers
-  colOfContainers.forEach(function (container) {
-    for (let i = 0; i < 16; i++) {
-        var div = document.createElement("div");
-        div.id = "main"
-        div.classList = "square-div";
-        container.appendChild(div);
-      };
-})
+colOfContainers.forEach(function (container) {
+  for (let i = 0; i < 16; i++) {
+    var div = document.createElement("div");
+    div.id = "main";
+    div.classList = "square-div";
+    container.appendChild(div);
+  }
+});
 
 // get divs to change color after hovering
 var mouseTargets = document.querySelectorAll("div");
-mouseTargets.forEach(function(target) {
-    target.addEventListener("mouseover", () => {
-        target.setAttribute("style", "background-color:lightBlue;")
+mouseTargets.forEach(function (target) {
+  target.addEventListener("mouseover", () => {
+    target.setAttribute("style", "background-color:lightBlue;");
   });
-})
+});
 
-// Create a column of 16 div box elements
+// Add a button to reconfigure Grid
+var recon = document.createElement("button");
+recon.textContent = "Reconfigure Grid";
+document.getElementById("body").appendChild(recon);
+
+// If button is clicked then a prompt shows up asking for the number squares per side. Max is 100.
+// take number as input. E.g 64
+// Change values of above container and box creators, i & j to input value
+// width and height of the body container should remain the same.. Use
+//               document.getElementById('div').setAttribute("style","width:500px");
+
+
+var reconBtn = document.querySelector("button");
+reconBtn.addEventListener("click", function () {
+
+  var gridSize = Number(prompt("How many number of grid square would you like per side(maximum 100)"));
+  console.log(typeof gridSize)
+  if (gridSize <= 100) {
+    mouseTargets.forEach(function (target) {
+        target.remove();
+    });
+    for (let i = 0; i < gridSize; i++) {
+        var cont = document.createElement("div");
+        cont.id = "container";
+        cont.classList = "main-grid";
+        document.getElementById("body").appendChild(cont);
+      };
+
+      var colOfContainers = document.querySelectorAll(".main-grid");
+      colOfContainers.forEach(function (container) {
+    for (let i = 0; i < gridSize; i++) {
+        var div = document.createElement("div");
+        div.id = "main";
+        div.classList = "square-div";
+        container.appendChild(div);
+    }
+  });
+};
+});
 
 
 
 
-// ------- May be redundant -----
+// ------- REDUNDENT-----
 
 // for each div-box element, create 15 more box in front of the row
 
@@ -52,7 +89,6 @@ mouseTargets.forEach(function(target) {
 //         divSubCont.appendChild(divSub);
 //     }
 //   })
-
 
 // create a new div element
 // loop through to create 16 div elements in a column
