@@ -46,6 +46,10 @@ reconBtn.addEventListener("click", function () {
     mouseTargets.forEach(function (target) {
         target.remove();
     });
+    var colOfContainers = document.querySelectorAll(".main-grid");
+    colOfContainers.forEach(function (container) {
+        container.remove();
+    })
     for (let i = 0; i < gridSize; i++) {
         var cont = document.createElement("div");
         cont.id = "container";
